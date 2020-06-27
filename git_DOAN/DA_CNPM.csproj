@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8169955E-3758-4E77-8245-D95935B909EB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DA_CNPM</RootNamespace>
+    <AssemblyName>DA_CNPM</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\EntityBLL.cs" />
+    <Compile Include="DAL\ACCOUNT.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ACCOUNT_DETAIL.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\AccountDetailBLL.cs" />
+    <Compile Include="BLL\BookBLL.cs" />
+    <Compile Include="BLL\SupportBLL.cs" />
+    <Compile Include="DAL\BOOK.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\BOOKMARK.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CATEGORY.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\BookDAL.cs" />
+    <Compile Include="DAL\DTO\Account.cs" />
+    <Compile Include="DAL\AccountDAL.cs" />
+    <Compile Include="DAL\DataProvider.cs" />
+    <Compile Include="DAL\AccountDetailDAL.cs" />
+    <Compile Include="DAL\DTO\Book.cs" />
+    <Compile Include="DAL\DTO\Support.cs" />
+    <Compile Include="DAL\SupportDAL.cs" />
+    <Compile Include="DAL\eDA_CNPM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eDA_CNPM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\eDA_CNPM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\eDA_CNPM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eDA_CNPM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\GROUP.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PLL\fBookAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLL\fBookAdd.Designer.cs">
+      <DependentUpon>fBookAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLL\fBookEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLL\fBookEdit.Designer.cs">
+      <DependentUpon>fBookEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLL\fManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLL\fManagement.Designer.cs">
+      <DependentUpon>fManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLL\fLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLL\fLogin.Designer.cs">
+      <DependentUpon>fLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DAL\DTO\AccountDetail.cs" />
+    <Compile Include="DAL\REVIEW.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sp_helpdiagrams_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SUPPORT.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\sysdiagram.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USER_REVIEW.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USP_GetAccountDetailList_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USP_GetAccountList_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USP_GetBookList_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USP_GetSupportList_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\USP_Login_Result.cs">
+      <DependentUpon>eDA_CNPM.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="PLL\fBookAdd.resx">
+      <DependentUpon>fBookAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLL\fBookEdit.resx">
+      <DependentUpon>fBookEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLL\fManagement.resx">
+      <DependentUpon>fManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLL\fLogin.resx">
+      <DependentUpon>fLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="DAL\eDA_CNPM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>eDA_CNPM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAL\eDA_CNPM.edmx.diagram">
+      <DependentUpon>eDA_CNPM.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DateTransferObject.txt.txt" />
+    <Content Include="DAL\eDA_CNPM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>eDA_CNPM.Context.cs</LastGenOutput>
+      <DependentUpon>eDA_CNPM.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\eDA_CNPM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>eDA_CNPM.edmx</DependentUpon>
+      <LastGenOutput>eDA_CNPM.cs</LastGenOutput>
+    </Content>
+    <Content Include="TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

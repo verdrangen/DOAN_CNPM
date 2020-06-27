@@ -1,0 +1,5 @@
+CREATE PROC USP_GetSupportList
+AS
+	SELECT * FROM dbo.SUPPORT
+GO
+

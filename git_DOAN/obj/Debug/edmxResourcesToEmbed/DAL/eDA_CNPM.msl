@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DOAN_CNPMModelStoreContainer" CdmEntityContainer="DOAN_CNPMEntities">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DOAN_CNPMModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DOAN_CNPMModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DOAN_CNPMModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DOAN_CNPMModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DOAN_CNPMModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DOAN_CNPMModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DOAN_CNPMModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DOAN_CNPMModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DOAN_CNPMModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="USP_GetAccountDetailList" FunctionName="DOAN_CNPMModel.Store.USP_GetAccountDetailList" />
+    <FunctionImportMapping FunctionImportName="USP_GetAccountList" FunctionName="DOAN_CNPMModel.Store.USP_GetAccountList" />
+    <FunctionImportMapping FunctionImportName="USP_GetBookList" FunctionName="DOAN_CNPMModel.Store.USP_GetBookList" />
+    <FunctionImportMapping FunctionImportName="USP_GetSupportList" FunctionName="DOAN_CNPMModel.Store.USP_GetSupportList" />
+    <FunctionImportMapping FunctionImportName="USP_Login" FunctionName="DOAN_CNPMModel.Store.USP_Login" />
+    <EntitySetMapping Name="ACCOUNTs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.ACCOUNT">
+        <MappingFragment StoreEntitySet="ACCOUNT">
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ACCOUNT_DETAIL">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.ACCOUNT_DETAIL">
+        <MappingFragment StoreEntitySet="ACCOUNT_DETAIL">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="D_O_B" ColumnName="D.O.B" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="ID_ACCOUNT" ColumnName="ID_ACCOUNT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOOKs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.BOOK">
+        <MappingFragment StoreEntitySet="BOOK">
+          <ScalarProperty Name="COVER" ColumnName="COVER" />
+          <ScalarProperty Name="OVERVIEW" ColumnName="OVERVIEW" />
+          <ScalarProperty Name="PDF_LINK" ColumnName="PDF_LINK" />
+          <ScalarProperty Name="PUBLISH_YEAR" ColumnName="PUBLISH_YEAR" />
+          <ScalarProperty Name="ID_CATEGORY" ColumnName="ID_CATEGORY" />
+          <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="ID_BOOK" ColumnName="ID_BOOK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BOOKMARKs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.BOOKMARK">
+        <MappingFragment StoreEntitySet="BOOKMARK">
+          <ScalarProperty Name="ID_ACCOUNT" ColumnName="ID_ACCOUNT" />
+          <ScalarProperty Name="ID_BOOK" ColumnName="ID_BOOK" />
+          <ScalarProperty Name="ID_BOOKMARK" ColumnName="ID_BOOKMARK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORies">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="CATE_NAME" ColumnName="CATE_NAME" />
+          <ScalarProperty Name="ID_CATEGORY" ColumnName="ID_CATEGORY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUPs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.GROUP">
+        <MappingFragment StoreEntitySet="GROUP">
+          <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REVIEWs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.REVIEW">
+        <MappingFragment StoreEntitySet="REVIEW">
+          <ScalarProperty Name="RATING" ColumnName="RATING" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="ID_BOOK" ColumnName="ID_BOOK" />
+          <ScalarProperty Name="ID_REVIEW" ColumnName="ID_REVIEW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPPORTs">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.SUPPORT">
+        <MappingFragment StoreEntitySet="SUPPORT">
+          <ScalarProperty Name="POST_DATE" ColumnName="POST_DATE" />
+          <ScalarProperty Name="FEEDBACK" ColumnName="FEEDBACK" />
+          <ScalarProperty Name="ID_ACCOUNT" ColumnName="ID_ACCOUNT" />
+          <ScalarProperty Name="ID_SUPPORT" ColumnName="ID_SUPPORT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_REVIEW">
+      <EntityTypeMapping TypeName="DOAN_CNPMModel.USER_REVIEW">
+        <MappingFragment StoreEntitySet="USER_REVIEW">
+          <ScalarProperty Name="ID_ACCOUNT" ColumnName="ID_ACCOUNT" />
+          <ScalarProperty Name="ID_REVIEW" ColumnName="ID_REVIEW" />
+          <ScalarProperty Name="ID_UR" ColumnName="ID_UR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

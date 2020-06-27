@@ -1,0 +1,259 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DOAN_CNPM
+{
+    class USER
+    { 
+       string ID_USER;
+       string USER_NAME;
+       string PHONENUMBER;
+       DateTime DOB;
+       string GENDER;
+       string EMAIL;
+       USER() { }
+       USER(string id_user, string user_name, string phonenumber, DateTime dob,string gender, string email)
+        {
+            this.ID_USER = id_user;
+            this.USER_NAME = user_name;
+            this.PHONENUMBER = phonenumber;
+            this.DOB = dob;
+            this.GENDER = gender;
+            this.EMAIL = email;
+        }
+        public string _ID_USER
+        {
+            set { ID_USER = value;}
+            get { return ID_USER; }
+        }
+        public string _USER_NAME
+        {
+            set { USER_NAME = value; }
+            get { return USER_NAME; }
+        }
+        public string _PHONENUMBER
+        {
+            set { PHONENUMBER = value; }
+            get { return PHONENUMBER; }
+        }
+        public DateTime _DOB
+        {
+            set { DOB = value; }
+            get { return DOB; }
+        }
+        public string _GENDER
+        {
+            set { GENDER = value; }
+            get { return GENDER; }
+        }
+        public string _EMAIL
+        {
+            set { EMAIL = value; }
+            get { return EMAIL; }
+        }
+
+
+    } 
+    class ACCOUNT
+    {
+        string USER_NAME;
+        string PASSWORD;
+        ACCOUNT() { }
+        ACCOUNT(string user_name, string pass)
+        {
+            this.USER_NAME = user_name;
+            this.PASSWORD = pass;
+        }
+        public string _USER_NAME
+        {
+            set { USER_NAME = value; }
+            get { return USER_NAME; }
+        }
+        public string _PASSWORD
+        {
+            set { PASSWORD = value; }
+            get { return PASSWORD; }
+        }
+
+    }
+    class USER_REVIEW
+    {
+        string ID_UR;
+        string ID_USER;
+        string ID_REVIEW;
+        USER_REVIEW() { }
+        USER_REVIEW(string id_ur, string id_user,string id_review)
+        {
+            this.ID_UR = id_ur;
+            this.ID_USER = id_user;
+            this.ID_REVIEW = id_review;
+        }
+        public string _ID_UR
+        {
+            set { ID_UR = value; }
+            get { return ID_UR; }
+        }
+        public string _ID_USER
+        {
+            set { ID_USER = value; }
+            get { return ID_USER; }
+        }
+        public string _ID_REVIEW
+        {
+            set { ID_REVIEW = value; }
+            get { return ID_REVIEW; }
+        }
+    }
+    class REVIEW
+    {
+        string ID_REVIEW;
+        string ID_BOOK;
+        string COMMENT;
+        string RATING;
+        REVIEW() { }
+        REVIEW(string id_review, string id_book, string comment, string rating)
+        {
+            this.ID_REVIEW = id_review;
+            this.ID_BOOK = id_book;
+            this.COMMENT = comment;
+            this.RATING = rating;
+        }
+        public string _ID_REVIEW
+        {
+            set { ID_REVIEW = value; }
+            get { return ID_REVIEW; }
+        }
+        public string _ID_BOOK
+        {
+            set { ID_BOOK = value; }
+            get { return ID_BOOK; }
+        }
+        public string _COMMENT
+        {
+            set { COMMENT = value; }
+            get { return COMMENT; }
+        }
+        public string _RATING
+        {
+            set { RATING = value; }
+            get { return RATING; }
+        }
+    }
+    // có vấn đề ở Field COVER
+    class BOOK
+    {
+        string ID_BOOK;
+        string TITLE;
+        string AUTHOR;
+        string ID_CATEGORY;
+        string PUBLISH_YEAR;
+        string PDF_LINK;
+        ImageLockMode COVER;
+        string OVERVIEW;
+        BOOK() { }
+        BOOK(string id_book, string title, string author, string id_cate, string publish_year, string pdf_link, string overview)
+        {
+            this.ID_BOOK = id_book;
+            this.TITLE = title;
+            this.AUTHOR = author;
+            this.ID_CATEGORY = id_cate;
+            this.PUBLISH_YEAR = publish_year;
+            this.PDF_LINK = pdf_link;
+            this.OVERVIEW = overview;
+        }
+
+    }
+    class BOOKMARK
+    {
+        string ID_BOOK;
+        string USER;
+        string ID_BOOKMARK;
+        BOOKMARK() { }
+        BOOKMARK(string id_book, string user,string id_bookmark)
+        {
+            this.ID_BOOK = id_book;
+            this.USER = user;
+            this.ID_BOOKMARK = id_bookmark;
+        }
+        public string _ID_BOOK
+        {
+            set { ID_BOOK = value; }
+            get { return ID_BOOK;  }
+        }
+        public string _USER
+        {
+            set { USER = value; }
+            get { return USER; }
+        }
+        public string _ID_BOOKMARK
+        {
+            set { ID_BOOKMARK = value;}
+            get { return ID_BOOKMARK; }
+        }
+
+    }
+    class CATEGORY
+    {
+        string ID_CATEGORY;
+        string CATENAME;
+        CATEGORY() { }
+        CATEGORY(string id_cate,string catename)
+        {
+            this.ID_CATEGORY = id_cate;
+            this.CATENAME = catename;
+        }
+        public string _ID_CATEGORY
+        {
+            set { ID_CATEGORY = value; }
+            get { return ID_CATEGORY; }
+        }
+        public string _CATENAME
+        {
+            set { CATENAME = value; }
+            get { return CATENAME; }
+        }
+    }
+    class SUPPORT
+    {
+        string ID_SUPPORT;
+        string ID_USER;
+        string FEEDBACK;
+        string REPLY;
+        SUPPORT() { }
+        SUPPORT(string id_sup,string id_user,string feedback,string reply)
+        {
+            this.ID_SUPPORT = id_sup;
+            this.ID_USER = id_user;
+            this.FEEDBACK = feedback;
+            this.REPLY = reply;
+        }
+        public string _ID_SUPPORT
+        {
+            set { ID_SUPPORT = value; }
+            get { return ID_SUPPORT; }
+        }
+        public string _ID_USER
+        {
+            set { ID_USER = value; }
+            get { return ID_USER; }
+        }
+        public string _FEEDBACK
+        {
+            set { FEEDBACK = value; }
+            get { return FEEDBACK; }
+        }
+        public string _REPLY
+        {
+            set { REPLY = value; }
+            get { return REPLY; }
+        }
+    }
+
+
+
+}
+

@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOAN_CNPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DOAN_CNPMEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DOAN_CNPMModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DOAN_CNPMModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="USP_GetAccountDetailList" EntitySet="ACCOUNT_DETAIL" ReturnType="Collection(DOAN_CNPMModel.ACCOUNT_DETAIL)" />
+    <FunctionImport Name="USP_GetAccountList" EntitySet="ACCOUNTs" ReturnType="Collection(DOAN_CNPMModel.ACCOUNT)" />
+    <FunctionImport Name="USP_GetBookList" EntitySet="BOOKs" ReturnType="Collection(DOAN_CNPMModel.BOOK)" />
+    <FunctionImport Name="USP_GetSupportList" EntitySet="SUPPORTs" ReturnType="Collection(DOAN_CNPMModel.SUPPORT)" />
+    <FunctionImport Name="USP_Login" EntitySet="ACCOUNTs" ReturnType="Collection(DOAN_CNPMModel.ACCOUNT)">
+      <Parameter Name="userName" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="groupID" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="ACCOUNTs" EntityType="DOAN_CNPMModel.ACCOUNT" />
+    <EntitySet Name="ACCOUNT_DETAIL" EntityType="DOAN_CNPMModel.ACCOUNT_DETAIL" />
+    <EntitySet Name="BOOKs" EntityType="DOAN_CNPMModel.BOOK" />
+    <EntitySet Name="BOOKMARKs" EntityType="DOAN_CNPMModel.BOOKMARK" />
+    <EntitySet Name="CATEGORies" EntityType="DOAN_CNPMModel.CATEGORY" />
+    <EntitySet Name="GROUPs" EntityType="DOAN_CNPMModel.GROUP" />
+    <EntitySet Name="REVIEWs" EntityType="DOAN_CNPMModel.REVIEW" />
+    <EntitySet Name="SUPPORTs" EntityType="DOAN_CNPMModel.SUPPORT" />
+    <EntitySet Name="sysdiagrams" EntityType="DOAN_CNPMModel.sysdiagram" />
+    <EntitySet Name="USER_REVIEW" EntityType="DOAN_CNPMModel.USER_REVIEW" />
+    <AssociationSet Name="FK_ACCOUNT_GROUP" Association="DOAN_CNPMModel.FK_ACCOUNT_GROUP">
+      <End Role="GROUP" EntitySet="GROUPs" />
+      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ACCOUNT" Association="DOAN_CNPMModel.FK_USER_ACCOUNT">
+      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKMARK_USER" Association="DOAN_CNPMModel.FK_BOOKMARK_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="BOOKMARK" EntitySet="BOOKMARKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUPPORT_USER" Association="DOAN_CNPMModel.FK_SUPPORT_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="SUPPORT" EntitySet="SUPPORTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_REVIEW_USER" Association="DOAN_CNPMModel.FK_USER_REVIEW_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="USER_REVIEW" EntitySet="USER_REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOK_CATEGORY" Association="DOAN_CNPMModel.FK_BOOK_CATEGORY">
+      <End Role="CATEGORY" EntitySet="CATEGORies" />
+      <End Role="BOOK" EntitySet="BOOKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKMARK_BOOK" Association="DOAN_CNPMModel.FK_BOOKMARK_BOOK">
+      <End Role="BOOK" EntitySet="BOOKs" />
+      <End Role="BOOKMARK" EntitySet="BOOKMARKs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REVIEW_BOOK" Association="DOAN_CNPMModel.FK_REVIEW_BOOK">
+      <End Role="BOOK" EntitySet="BOOKs" />
+      <End Role="REVIEW" EntitySet="REVIEWs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_REVIEW_REVIEW" Association="DOAN_CNPMModel.FK_USER_REVIEW_REVIEW">
+      <End Role="REVIEW" EntitySet="REVIEWs" />
+      <End Role="USER_REVIEW" EntitySet="USER_REVIEW" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="USP_GetAccountDetailList_Result">
+    <Property Type="Int32" Name="ID_ACCOUNT" Nullable="false" />
+    <Property Type="String" Name="USER_NAME" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="PHONENUMBER" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="D_O_B" Nullable="true" Precision="23" />
+    <Property Type="String" Name="GENDER" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="USP_GetAccountList_Result">
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="PASSWORD" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="GROUP_ID" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="USP_GetBookList_Result">
+    <Property Type="Int32" Name="ID_BOOK" Nullable="false" />
+    <Property Type="String" Name="TITLE" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="AUTHOR" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="ID_CATEGORY" Nullable="true" />
+    <Property Type="String" Name="PUBLISH_YEAR" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="PDF_LINK" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="OVERVIEW" Nullable="true" MaxLength="Max" />
+    <Property Type="Binary" Name="COVER" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="USP_GetSupportList_Result">
+    <Property Type="Int32" Name="ID_SUPPORT" Nullable="false" />
+    <Property Type="Int32" Name="ID_ACCOUNT" Nullable="true" />
+    <Property Type="String" Name="FEEDBACK" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="POST_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="USP_Login_Result">
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="PASSWORD" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="GROUP_ID" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <EntityType Name="ACCOUNT">
+    <Key>
+      <PropertyRef Name="USER_NAME" />
+    </Key>
+    <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="PASSWORD" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GROUP_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="GROUP" Relationship="DOAN_CNPMModel.FK_ACCOUNT_GROUP" FromRole="ACCOUNT" ToRole="GROUP" />
+    <NavigationProperty Name="ACCOUNT_DETAIL" Relationship="DOAN_CNPMModel.FK_USER_ACCOUNT" FromRole="ACCOUNT" ToRole="ACCOUNT_DETAIL" />
+  </EntityType>
+  <EntityType Name="ACCOUNT_DETAIL">
+    <Key>
+      <PropertyRef Name="ID_ACCOUNT" />
+    </Key>
+    <Property Name="ID_ACCOUNT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_NAME" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="PHONENUMBER" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="D_O_B" Type="DateTime" Precision="0" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ACCOUNT" Relationship="DOAN_CNPMModel.FK_USER_ACCOUNT" FromRole="ACCOUNT_DETAIL" ToRole="ACCOUNT" />
+    <NavigationProperty Name="BOOKMARKs" Relationship="DOAN_CNPMModel.FK_BOOKMARK_USER" FromRole="ACCOUNT_DETAIL" ToRole="BOOKMARK" />
+    <NavigationProperty Name="SUPPORTs" Relationship="DOAN_CNPMModel.FK_SUPPORT_USER" FromRole="ACCOUNT_DETAIL" ToRole="SUPPORT" />
+    <NavigationProperty Name="USER_REVIEW" Relationship="DOAN_CNPMModel.FK_USER_REVIEW_USER" FromRole="ACCOUNT_DETAIL" ToRole="USER_REVIEW" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="ID_BOOK" />
+    </Key>
+    <Property Name="ID_BOOK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TITLE" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="AUTHOR" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="ID_CATEGORY" Type="Int32" />
+    <Property Name="PUBLISH_YEAR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PDF_LINK" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="OVERVIEW" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="COVER" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="CATEGORY" Relationship="DOAN_CNPMModel.FK_BOOK_CATEGORY" FromRole="BOOK" ToRole="CATEGORY" />
+    <NavigationProperty Name="BOOKMARKs" Relationship="DOAN_CNPMModel.FK_BOOKMARK_BOOK" FromRole="BOOK" ToRole="BOOKMARK" />
+    <NavigationProperty Name="REVIEWs" Relationship="DOAN_CNPMModel.FK_REVIEW_BOOK" FromRole="BOOK" ToRole="REVIEW" />
+  </EntityType>
+  <EntityType Name="BOOKMARK">
+    <Key>
+      <PropertyRef Name="ID_BOOKMARK" />
+    </Key>
+    <Property Name="ID_BOOKMARK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BOOK" Type="Int32" />
+    <Property Name="ID_ACCOUNT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ACCOUNT_DETAIL" Relationship="DOAN_CNPMModel.FK_BOOKMARK_USER" FromRole="BOOKMARK" ToRole="ACCOUNT_DETAIL" />
+    <NavigationProperty Name="BOOK" Relationship="DOAN_CNPMModel.FK_BOOKMARK_BOOK" FromRole="BOOKMARK" ToRole="BOOK" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID_CATEGORY" />
+    </Key>
+    <Property Name="ID_CATEGORY" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATE_NAME" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="BOOKs" Relationship="DOAN_CNPMModel.FK_BOOK_CATEGORY" FromRole="CATEGORY" ToRole="BOOK" />
+  </EntityType>
+  <EntityType Name="GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GROUP_NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ACCOUNTs" Relationship="DOAN_CNPMModel.FK_ACCOUNT_GROUP" FromRole="GROUP" ToRole="ACCOUNT" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="ID_REVIEW" />
+    </Key>
+    <Property Name="ID_REVIEW" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_BOOK" Type="Int32" />
+    <Property Name="COMMENT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="RATING" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="BOOK" Relationship="DOAN_CNPMModel.FK_REVIEW_BOOK" FromRole="REVIEW" ToRole="BOOK" />
+    <NavigationProperty Name="USER_REVIEW" Relationship="DOAN_CNPMModel.FK_USER_REVIEW_REVIEW" FromRole="REVIEW" ToRole="USER_REVIEW" />
+  </EntityType>
+  <EntityType Name="SUPPORT">
+    <Key>
+      <PropertyRef Name="ID_SUPPORT" />
+    </Key>
+    <Property Name="ID_SUPPORT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_ACCOUNT" Type="Int32" />
+    <Property Name="FEEDBACK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="POST_DATE" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ACCOUNT_DETAIL" Relationship="DOAN_CNPMModel.FK_SUPPORT_USER" FromRole="SUPPORT" ToRole="ACCOUNT_DETAIL" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="USER_REVIEW">
+    <Key>
+      <PropertyRef Name="ID_UR" />
+    </Key>
+    <Property Name="ID_UR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_REVIEW" Type="Int32" />
+    <Property Name="ID_ACCOUNT" Type="Int32" />
+    <NavigationProperty Name="ACCOUNT_DETAIL" Relationship="DOAN_CNPMModel.FK_USER_REVIEW_USER" FromRole="USER_REVIEW" ToRole="ACCOUNT_DETAIL" />
+    <NavigationProperty Name="REVIEW" Relationship="DOAN_CNPMModel.FK_USER_REVIEW_REVIEW" FromRole="USER_REVIEW" ToRole="REVIEW" />
+  </EntityType>
+  <Association Name="FK_ACCOUNT_GROUP">
+    <End Type="DOAN_CNPMModel.GROUP" Role="GROUP" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.ACCOUNT" Role="ACCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ACCOUNT">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ACCOUNT">
+    <End Type="DOAN_CNPMModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.ACCOUNT_DETAIL" Role="ACCOUNT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT">
+        <PropertyRef Name="USER_NAME" />
+      </Principal>
+      <Dependent Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="USER_NAME" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKMARK_USER">
+    <End Type="DOAN_CNPMModel.ACCOUNT_DETAIL" Role="ACCOUNT_DETAIL" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.BOOKMARK" Role="BOOKMARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="BOOKMARK">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUPPORT_USER">
+    <End Type="DOAN_CNPMModel.ACCOUNT_DETAIL" Role="ACCOUNT_DETAIL" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DOAN_CNPMModel.SUPPORT" Role="SUPPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="SUPPORT">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_REVIEW_USER">
+    <End Type="DOAN_CNPMModel.ACCOUNT_DETAIL" Role="ACCOUNT_DETAIL" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.USER_REVIEW" Role="USER_REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="USER_REVIEW">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOK_CATEGORY">
+    <End Type="DOAN_CNPMModel.CATEGORY" Role="CATEGORY" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.BOOK" Role="BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID_CATEGORY" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="ID_CATEGORY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKMARK_BOOK">
+    <End Type="DOAN_CNPMModel.BOOK" Role="BOOK" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.BOOKMARK" Role="BOOKMARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOK">
+        <PropertyRef Name="ID_BOOK" />
+      </Principal>
+      <Dependent Role="BOOKMARK">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REVIEW_BOOK">
+    <End Type="DOAN_CNPMModel.BOOK" Role="BOOK" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.REVIEW" Role="REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOK">
+        <PropertyRef Name="ID_BOOK" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_REVIEW_REVIEW">
+    <End Type="DOAN_CNPMModel.REVIEW" Role="REVIEW" Multiplicity="0..1" />
+    <End Type="DOAN_CNPMModel.USER_REVIEW" Role="USER_REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REVIEW">
+        <PropertyRef Name="ID_REVIEW" />
+      </Principal>
+      <Dependent Role="USER_REVIEW">
+        <PropertyRef Name="ID_REVIEW" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

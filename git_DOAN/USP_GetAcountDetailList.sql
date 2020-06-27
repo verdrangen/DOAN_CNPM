@@ -1,0 +1,6 @@
+CREATE PROC USP_GetAccountDetailList
+AS
+	SELECT * FROM dbo.ACCOUNT_DETAIL
+GO
+
+

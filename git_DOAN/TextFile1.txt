@@ -1,0 +1,27 @@
+﻿//Console.WriteLine("Getting Connection ...");
+                //MessageBox.Show("Getting Connection ...");
+
+                //List<ACCOUNT> acc = new List<ACCOUNT>();
+                /*try
+                {
+                    Console.WriteLine("Openning Connection ...");
+                    MessageBox.Show("Openning Connection ...");
+
+                    connection.Open();
+
+                    Console.WriteLine("Connection successful!");
+                    MessageBox.Show("Connection successful!");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                    MessageBox.Show("Error: " + e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                Console.Read(); */
+
+                //int n = Convert.ToInt32(cm.ExecuteScalar());
+                //Console.WriteLine("n: {0}", n);

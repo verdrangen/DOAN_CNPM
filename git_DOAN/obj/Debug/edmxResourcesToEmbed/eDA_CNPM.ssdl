@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOAN_CNPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCOUNT">
+    <Key>
+      <PropertyRef Name="USER_NAME" />
+    </Key>
+    <Property Name="USER_NAME" Type="nchar" MaxLength="300" Nullable="false" />
+    <Property Name="PASSWORD" Type="nchar" MaxLength="10" />
+    <Property Name="GROUP_ID" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ACCOUNT_DETAIL">
+    <Key>
+      <PropertyRef Name="ID_ACCOUNT" />
+    </Key>
+    <Property Name="ID_ACCOUNT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_NAME" Type="nchar" MaxLength="300" />
+    <Property Name="PHONENUMBER" Type="nchar" MaxLength="10" />
+    <Property Name="D.O.B" Type="datetime" />
+    <Property Name="GENDER" Type="nchar" MaxLength="10" />
+    <Property Name="EMAIL" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="BOOK">
+    <Key>
+      <PropertyRef Name="ID_BOOK" />
+    </Key>
+    <Property Name="ID_BOOK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITLE" Type="nchar" MaxLength="300" />
+    <Property Name="AUTHOR" Type="nchar" MaxLength="300" />
+    <Property Name="ID_CATEGORY" Type="int" />
+    <Property Name="PUBLISH_YEAR" Type="nchar" MaxLength="10" />
+    <Property Name="PDF_LINK" Type="nchar" MaxLength="300" />
+    <Property Name="OVERVIEW" Type="ntext" />
+    <Property Name="COVER" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="BOOKMARK">
+    <Key>
+      <PropertyRef Name="ID_BOOKMARK" />
+    </Key>
+    <Property Name="ID_BOOKMARK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BOOK" Type="int" />
+    <Property Name="ID_ACCOUNT" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID_CATEGORY" />
+    </Key>
+    <Property Name="ID_CATEGORY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATE_NAME" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GROUP_NAME" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="ID_REVIEW" />
+    </Key>
+    <Property Name="ID_REVIEW" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_BOOK" Type="int" />
+    <Property Name="COMMENT" Type="nchar" MaxLength="10" />
+    <Property Name="RATING" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SUPPORT">
+    <Key>
+      <PropertyRef Name="ID_SUPPORT" />
+    </Key>
+    <Property Name="ID_SUPPORT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_ACCOUNT" Type="int" />
+    <Property Name="FEEDBACK" Type="ntext" />
+    <Property Name="POST_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USER_REVIEW">
+    <Key>
+      <PropertyRef Name="ID_UR" />
+    </Key>
+    <Property Name="ID_UR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_REVIEW" Type="int" />
+    <Property Name="ID_ACCOUNT" Type="int" />
+  </EntityType>
+  <Association Name="FK_ACCOUNT_GROUP">
+    <End Role="GROUP" Type="Self.GROUP" Multiplicity="0..1" />
+    <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ACCOUNT">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOK_CATEGORY">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID_CATEGORY" />
+      </Principal>
+      <Dependent Role="BOOK">
+        <PropertyRef Name="ID_CATEGORY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKMARK_BOOK">
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="0..1" />
+    <End Role="BOOKMARK" Type="Self.BOOKMARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOK">
+        <PropertyRef Name="ID_BOOK" />
+      </Principal>
+      <Dependent Role="BOOKMARK">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BOOKMARK_USER">
+    <End Role="ACCOUNT_DETAIL" Type="Self.ACCOUNT_DETAIL" Multiplicity="0..1" />
+    <End Role="BOOKMARK" Type="Self.BOOKMARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="BOOKMARK">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REVIEW_BOOK">
+    <End Role="BOOK" Type="Self.BOOK" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOOK">
+        <PropertyRef Name="ID_BOOK" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="ID_BOOK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SUPPORT_USER">
+    <End Role="ACCOUNT_DETAIL" Type="Self.ACCOUNT_DETAIL" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SUPPORT" Type="Self.SUPPORT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="SUPPORT">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ACCOUNT">
+    <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+    <End Role="ACCOUNT_DETAIL" Type="Self.ACCOUNT_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT">
+        <PropertyRef Name="USER_NAME" />
+      </Principal>
+      <Dependent Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="USER_NAME" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_REVIEW_REVIEW">
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="0..1" />
+    <End Role="USER_REVIEW" Type="Self.USER_REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REVIEW">
+        <PropertyRef Name="ID_REVIEW" />
+      </Principal>
+      <Dependent Role="USER_REVIEW">
+        <PropertyRef Name="ID_REVIEW" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_REVIEW_USER">
+    <End Role="ACCOUNT_DETAIL" Type="Self.ACCOUNT_DETAIL" Multiplicity="0..1" />
+    <End Role="USER_REVIEW" Type="Self.USER_REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCOUNT_DETAIL">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Principal>
+      <Dependent Role="USER_REVIEW">
+        <PropertyRef Name="ID_ACCOUNT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetAccountDetailList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetAccountList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetBookList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetSupportList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="nchar" Mode="In" />
+    <Parameter Name="password" Type="nchar" Mode="In" />
+    <Parameter Name="groupID" Type="nchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="DOAN_CNPMModelStoreContainer">
+    <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ACCOUNT_DETAIL" EntityType="Self.ACCOUNT_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOK" EntityType="Self.BOOK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BOOKMARK" EntityType="Self.BOOKMARK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP" EntityType="Self.GROUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REVIEW" EntityType="Self.REVIEW" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUPPORT" EntityType="Self.SUPPORT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_REVIEW" EntityType="Self.USER_REVIEW" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ACCOUNT_GROUP" Association="Self.FK_ACCOUNT_GROUP">
+      <End Role="GROUP" EntitySet="GROUP" />
+      <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOK_CATEGORY" Association="Self.FK_BOOK_CATEGORY">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="BOOK" EntitySet="BOOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKMARK_BOOK" Association="Self.FK_BOOKMARK_BOOK">
+      <End Role="BOOK" EntitySet="BOOK" />
+      <End Role="BOOKMARK" EntitySet="BOOKMARK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BOOKMARK_USER" Association="Self.FK_BOOKMARK_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="BOOKMARK" EntitySet="BOOKMARK" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REVIEW_BOOK" Association="Self.FK_REVIEW_BOOK">
+      <End Role="BOOK" EntitySet="BOOK" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SUPPORT_USER" Association="Self.FK_SUPPORT_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="SUPPORT" EntitySet="SUPPORT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ACCOUNT" Association="Self.FK_USER_ACCOUNT">
+      <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_REVIEW_REVIEW" Association="Self.FK_USER_REVIEW_REVIEW">
+      <End Role="REVIEW" EntitySet="REVIEW" />
+      <End Role="USER_REVIEW" EntitySet="USER_REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_REVIEW_USER" Association="Self.FK_USER_REVIEW_USER">
+      <End Role="ACCOUNT_DETAIL" EntitySet="ACCOUNT_DETAIL" />
+      <End Role="USER_REVIEW" EntitySet="USER_REVIEW" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
